@@ -1,0 +1,8 @@
+.RData
+.Rhistory
+*.zip
+*.db
+.DS_Store
+.Rproj.user/
+md_voter_files/
+2024 Presidential Primary CVRs/

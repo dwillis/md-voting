@@ -1,0 +1,177 @@
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+```
+
+```{r}
+montco <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
+montco1 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 1.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
+montco2 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 2.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
+montco3 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 3.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
+montco4 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 4.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
+montco5 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 5.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
+montco6 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 6.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
+montco7 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 7.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
+montco8 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 8.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
+montco9 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 9.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
+montco10 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 10.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
+
+
+```
+
+```{r}
+montco <- read_rds("montco.rds")
+montco1 <- read_rds("montco1.rds")
+montco4 <- read_rds("montco4.rds")
+montco8 <- read_rds("montco8.rds")
+montco9 <- read_rds("montco9.rds")
+montco10 <- read_rds("montco10.rds")
+```
+
+```{r}
+write_csv(montco, "montco.csv")
+write_csv(montco1, "montco1.csv")
+write_csv(montco4, "montco4.csv")
+write_csv(montco8, "montco8.csv")
+write_csv(montco9, "montco9.csv")
+write_csv(montco10, "montco10.csv")
+```
+
+```{r}
+montco <- read_csv("montco.csv") |> mutate(county = "Montgomery")
+
+```
+
+```{r}
+allegany <- read_csv("Allegany_2022.csv") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> mutate(county = "Allegany")
+
+garrett <- read_csv("Garrett_2022.csv") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> mutate(county = "Garrett")
+
+washington <- read_csv("Washington_2022.csv") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> mutate(county = "Washington")
+
+all_cvrs <- bind_rows(c(montco, allegany, garrett, washington))
+
+```
+
+```{r}
+frederick <- read_excel("11_Frederick/11GG22_PROV_CVR_SBE.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
+frederick1 <- read_excel("11_Frederick/11GG22_Prov_CVR_SBE - 1.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
+frederick2 <- read_excel("11_Frederick/11GG22_Prov_CVR_SBE - 2.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
+```
+
+```{r}
+frederick_master <- read_csv("fred.csv") |> mutate(county = "Frederick") |> rename(gov = governor_lt_governor_500001343, comptroller = comptroller_500001345, ag = attorney_general_500001346, senate = u_s_senator_500001386, congress = representative_in_congress_6_500001378)
+wash_master <- read_csv("washington.csv")  |> mutate(county = "Washington") |> rename(gov = governor_lt_governor_500001343, comptroller = comptroller_500001345, ag = attorney_general_500001346, senate = u_s_senator_500001386, congress = representative_in_congress_6_500001378)
+allegany_master <- read_csv("allegany.csv") |> mutate(county = "Allegany") |> rename(gov = governor_lt_governor_500001343, comptroller = comptroller_500001345, ag = attorney_general_500001346, senate = u_s_senator_500001386, congress = representative_in_congress_6_500001378)
+garrett_master <- read_csv("garrett.csv") |> mutate(county = "Garrett") |> rename(gov = governor_lt_governor_500001343, comptroller = comptroller_500001345, ag = attorney_general_500001346, senate = u_s_senator_500001386, congress = representative_in_congress_6_500001378)
+montco_master <- read_csv("montco.csv") |> mutate(county = "Montgomery") |> rename(gov = governor_lt_governor_500001343, comptroller = comptroller_500001345, ag = attorney_general_500001346, senate = u_s_senator_500001386, congress = representative_in_congress_6_500001378)
+```
+
+```{r}
+all_precincts <- bind_rows(list(montco_master, allegany_master, garrett_master, wash_master, frederick_master))
+```
+
+```{r}
+all_gov_votes <- all_precincts |> 
+  filter(!is.na(gov)) |> 
+  group_by(county) |> 
+  summarise(all_gov = n())
+
+dem_ticket <- all_precincts |> 
+  filter(gov == 'Moore-Miller (10005005.0009160)', comptroller == 'Brooke Elizabeth Lierman (10064064.0004220)', ag == 'Anthony G. Brown (10054054.0000860)', senate == 'Chris Van Hollen (10043043.0001300)', congress == 'David J. Trone (10213213.0005020)') |> 
+  group_by(county) |> 
+  summarise(dem_straight_ticket = n())
+
+gop_ticket <- all_precincts |> 
+  filter(gov == 'Cox-Schifanelli (10005005.0002760)', comptroller == 'Barry Glassman (10064064.0000970)', ag == 'Michael Anthony Peroutka (10054054.0004580)', senate == 'Chris Chaffee (10043043.0003520)', congress == 'Neil C. Parrott (10213213.0002960)') |> 
+  group_by(county) |> 
+  summarise(gop_straight_ticket = n())
+
+gop_moore <- all_precincts |> 
+  filter(gov == 'Moore-Miller (10005005.0009160)', comptroller == 'Barry Glassman (10064064.0000970)', ag == 'Michael Anthony Peroutka (10054054.0004580)', senate == 'Chris Chaffee (10043043.0003520)', congress == 'Neil C. Parrott (10213213.0002960)') |> 
+  group_by(county) |> 
+  summarise(gop_moore = n())
+
+mg <- all_precincts |> 
+  filter(gov == 'Moore-Miller (10005005.0009160)', comptroller == 'Barry Glassman (10064064.0000970)') |> 
+  group_by(county) |> 
+  summarise(moore_glassman = n())
+
+totals <- all_gov_votes |>  inner_join(dem_ticket) |> inner_join(gop_ticket) |> inner_join(gop_moore) |> inner_join(mg)
+```
+
+
+```{r}
+#md_voters <- read_delim("md_voter_files/Voter List.txt", delim = '\t')
+
+md_voters <- read_delim("md_voter_files/RegisteredVoterList/RegisteredVoters.txt", delim = '\t', trim_ws=TRUE)
+```
+
+
+
+```{r}
+md_voters_zip <- md_voters |> 
+  group_by(RESIDENTIALZIP5, PARTY) |> 
+  summarize(voters = n()) |> 
+  pivot_wider(names_from = PARTY, values_from = voters)
+
+
+md_voters_county <- md_voters |> 
+  filter(PARTY == 'UNA') |> 
+  group_by(COUNTY, GENDER) |> 
+  summarize(voters = n()) |> 
+  pivot_wider(names_from = GENDER, values_from = voters) |> 
+  mutate(U = replace_na(U, 0)) |> 
+  mutate(TOTAL = M + F + U) |> 
+  mutate(PCT_M = M/TOTAL * 100, PCT_F = F/TOTAL*100)
+
+write_csv(md_voters_county, "~/code/datajournalismbook-elections/pre_labs/pre_lab_11/data/md_una_voters.csv", na='0')
+
+write_csv(md_voters_zip, "~/code/datajournalismbook-elections/pre_labs/pre_lab_11/data/md_voters_zip.csv", na='0')
+```
+
+
+```{r}
+md_voters |> filter(LASTNAME == 'WILLIS', FIRSTNAME == 'DEREK')
+```
+
+
+```{r}
+md_voters_with_dob <- read_delim("md_voter_files/HistoryDOB.txt", delim = '\t', guess_max = 50000) |> 
+  mutate(CountyRegistrationDate = mdy(CountyRegistrationDate), StateRegistrationDate = mdy(StateRegistrationDate), BirthDate = mdy(BirthDate)) |> 
+  rename(general_2016 = `11/08/2016-PG`, general_2020 = `11/03/2020-PG`) |> 
+  select(-`...43`)
+
+
+trimmed_md_voters <- md_voters_with_dob |> select(-Legislative, -Councilmanic, -Ward, -Municipal, -School, -NonStandardAddress, -MAILINGADDRESS, -MAILINGCITY, -MAILINGSTATE, -MAILINGZIP, -MAILINGZIPPLUS, -`11/05/2024-PG`) |> mutate(Address = str_replace(paste(HouseNumber, StreetPreDirection, StreetName, StreetType, StreetPostDirection), " NA ", ' ')) |> mutate(Address = str_replace(Address, " NA$", ""))
+  
+
+write_csv(trimmed_md_voters, "md_voters_for_match.csv")
+
+```
+
+```{r}
+new_voters <- md_voters_with_dob |> filter(StateRegistrationDate > '2023-12-31') |> select(-`11/05/2024-PG`, -general_2016, -general_2020)
+```
+
+```{r}
+sept_actblue <- read_csv("~/Downloads/sa_1817884_md.csv")
+aug_actblue <- read_csv("~/Downloads/sa_1812188_md.csv")
+```
+```{r}
+sept_ab_harris <- sept_actblue |> filter(memo_text == 'Earmarked for HARRIS FOR PRESIDENT (C00703975)')
+aug_ab_harris <- aug_actblue |> filter(memo_text == 'Earmarked for HARRIS FOR PRESIDENT (C00703975)') |> filter(date > '2024-07-20')
+
+combined <- bind_rows(aug_ab_harris, sept_ab_harris)
+
+
+```
+
+```{r}
+combined |> inner_join(new_voters, join_by(last_name == LastName, first_name == FirstName, city == ResidentialCity)) |> 
+  select(last_name, first_name, middle_name, address_one, city, HouseNumber, StreetName, StreetType, Party, Gender) |> 
+  filter(str_detect(address_one, StreetName), str_detect(address_one, as.character(HouseNumber))) |> 
+  filter(Party != 'DEM')
+```
+

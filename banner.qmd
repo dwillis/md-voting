@@ -1,0 +1,17 @@
+```{r}
+library(tidyverse)
+library(readxl)
+library(janitor)
+```
+
+### Converting County Totals
+
+```{r}
+voters14 <- read_excel("PrecinctRegisterCounts_ByCounty_GG14.xls") |> mutate(year=2014)
+voters16 <- read_excel("PG16_Eligible_Active_Voters_by_County.xlsx") |> mutate(year=2016)
+voters18 <- read_excel("GG18_Eligible_Active_Voters_by_County.xlsx") |> mutate(year=2018)
+voters20 <- read_excel("Eligible Active Voters by County - PG20.xlsx") |> mutate(year=2020)
+voters22 <- read_excel("Eligible Active Voters by County - GG22.xlsx") |> mutate(year=2022)
+voters24 <- read_csv("sept24.csv") |> mutate(year=2024)
+```
+
