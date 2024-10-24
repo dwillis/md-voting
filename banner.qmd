@@ -7,11 +7,55 @@ library(janitor)
 ### Converting County Totals
 
 ```{r}
-voters14 <- read_excel("PrecinctRegisterCounts_ByCounty_GG14.xls") |> mutate(year=2014)
-voters16 <- read_excel("PG16_Eligible_Active_Voters_by_County.xlsx") |> mutate(year=2016)
-voters18 <- read_excel("GG18_Eligible_Active_Voters_by_County.xlsx") |> mutate(year=2018)
-voters20 <- read_excel("Eligible Active Voters by County - PG20.xlsx") |> mutate(year=2020)
-voters22 <- read_excel("Eligible Active Voters by County - GG22.xlsx") |> mutate(year=2022)
-voters24 <- read_csv("sept24.csv") |> mutate(year=2024)
+
+#voters12 <- read_excel("byprecinct.xls") |> filter(!is.na(PARTY)) |> group_by(COUNTY, PARTY) |> summarise(voters = sum(TOTAL_VOTERS)) |> pivot_wider(names_from = PARTY, values_from = voters) |> clean_names() |> mutate(year = 2012) |> 
+#  rename(dem = democrat, rep = republican, grn = green, lib = libertarian, oth = other, ame = americans_elect, unaf = unaffiliated) |> mutate(ame = replace_na(ame,0)) |> mutate(oth = ame + oth) |> select(-ame) |> mutate(total = dem + rep + grn + lib + oth + unaf)
+
+#voters12 <- voters12 |> 
+#  adorn_totals("row", fill = "Total")
+
+voters12 <- read_csv("voters12.csv")
+
+voters14 <- read_excel("PrecinctRegisterCounts_ByCounty_GG14.xls") |> mutate(year=2014) |> clean_names() |> rename(unaf = una)
+voters16 <- read_excel("PG16_Eligible_Active_Voters_by_County.xlsx") |> mutate(year=2016) |> clean_names() |> rename(unaf = una)
+voters18 <- read_excel("GG18_Eligible_Active_Voters_by_County.xlsx") |> mutate(year=2018) |> clean_names() |> rename(unaf = una)
+voters20 <- read_excel("Eligible Active Voters by County - PG20.xlsx") |> mutate(year=2020) |> clean_names() |> rename(unaf = una) |> mutate(oth = bar + wcp + oth) |> select(-bar, -wcp)
+voters22 <- read_excel("Eligible Active Voters by County - GG22.xlsx") |> mutate(year=2022) |> clean_names() |> mutate(oth = bar + wcp + oth) |> select(-bar, -wcp) |> rename(unaf = una)
+voters24 <- read_csv("sept24.csv") |> mutate(year=2024) |> select(-pct_dem24, -pct_rep24, -pct_unaffil24) |> mutate(oth = nlm + oth) |> select(-nlm)
+
+
+voters12to24 <- bind_rows(list(voters12, voters14, voters16, voters18, voters20, voters22, voters24))
+
+write_csv(voters12to24, "voters12to24.csv")
+
 ```
+
+### Load it all in
+
+
+```{r}
+voters12to24 <- read_csv("voters12to24.csv")
+
+voters12to24 <- voters12to24 |> 
+  mutate(pct_dem = dem/total *100, pct_rep = rep/total * 100, pct_unaf = unaf/total *100)
+
+```
+
+### The Rise of the Unaffiliated Voter
+
+```{r}
+voters12to24 |> 
+  ggplot() +
+  geom_line(aes(x=year, y=pct_unaf, group=county)) +
+  facet_wrap(~county)
+```
+Let's start with this virtual law of Maryland politics: the presidential race here won't be particularly close. Maryland has long been a reliably Democratic state, and that's expected to be the case in 2024 as it has been before. Should former Gov. Larry Hogan, a Republican, be elected to the Senate, it will be due to his ability to attract a certain percentage of Democrats and Democratic-leaning independents to defeat Angela Alsobrooks, not a surge in Republican voters in the state.
+
+But look deeper beneath the seemingly placid surface, and there's something worth paying attention to. Maryland might be blue, but like most states, it has seen a steady rise in voters choosing no party when registering to vote, or moving away from one of the two major parties. These "unaffiliated" voters now account for more than one in five voters in the state, up from 16 percent in 2012.
+
+
+
+In 2022, more than 11 percent of Frederick County's voters opted for Republicans in races for Comptroller, Attorney General, the Senate and the House of Representatives and didn't support Dan Cox, the GOP nominee for governor. Granted, Cox was in some ways a uniquely bad candidate, but most conservative areas of the state stuck with him. In Garrett County, less than one percent of voters fit the "Republican but not Cox" profile.
+
+
 
