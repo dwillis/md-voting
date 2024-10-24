@@ -5,17 +5,17 @@ library(janitor)
 ```
 
 ```{r}
-montco <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
-montco1 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 1.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
-montco2 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 2.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
-montco3 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 3.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
-montco4 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 4.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
-montco5 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 5.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
-montco6 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 6.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
-montco7 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 7.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
-montco8 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 8.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
-montco9 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 9.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
-montco10 <- read_excel("16_Montgomery/16GG22_Prov_CVR_SBE - 10.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
+montco <- read_excel("2022_General_Election/2022_General_CVRs/16_Montgomery/16GG22_Prov_CVR_SBE.xlsx") |> clean_names() |>  drop_na()
+montco1 <- read_excel("2022_General_Election/2022_General_CVRs/16_Montgomery/16GG22_Prov_CVR_SBE - 1.xlsx") |> clean_names() |>  drop_na()
+montco2 <- read_excel("2022_General_Election/2022_General_CVRs/16_Montgomery/16GG22_Prov_CVR_SBE - 2.xlsx") |> clean_names() |>  drop_na()
+montco3 <- read_excel("2022_General_Election/2022_General_CVRs/16_Montgomery/16GG22_Prov_CVR_SBE - 3.xlsx") |> clean_names() |>  drop_na()
+montco4 <- read_excel("2022_General_Election/2022_General_CVRs/16_Montgomery/16GG22_Prov_CVR_SBE - 4.xlsx") |> clean_names() |>  drop_na()
+montco5 <- read_excel("2022_General_Election/2022_General_CVRs/16_Montgomery/16GG22_Prov_CVR_SBE - 5.xlsx") |> clean_names() |>  drop_na()
+montco6 <- read_excel("2022_General_Election/2022_General_CVRs/16_Montgomery/16GG22_Prov_CVR_SBE - 6.xlsx") |> clean_names() |>  drop_na()
+montco7 <- read_excel("2022_General_Election/2022_General_CVRs/16_Montgomery/16GG22_Prov_CVR_SBE - 7.xlsx") |> clean_names() |>  drop_na()
+montco8 <- read_excel("2022_General_Election/2022_General_CVRs/16_Montgomery/16GG22_Prov_CVR_SBE - 8.xlsx") |> clean_names() |>  drop_na()
+montco9 <- read_excel("2022_General_Election/2022_General_CVRs/16_Montgomery/16GG22_Prov_CVR_SBE - 9.xlsx") |> clean_names() |>  drop_na()
+montco10 <- read_excel("2022_General_Election/2022_General_CVRs/16_Montgomery/16GG22_Prov_CVR_SBE - 10.xlsx") |> clean_names() |>  drop_na()
 
 
 ```
@@ -44,20 +44,20 @@ montco <- read_csv("montco.csv") |> mutate(county = "Montgomery")
 ```
 
 ```{r}
-allegany <- read_csv("Allegany_2022.csv") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> mutate(county = "Allegany")
+allegany <- read_csv("Allegany_2022.csv") |> clean_names() |>  mutate(county = "Allegany")
 
-garrett <- read_csv("Garrett_2022.csv") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> mutate(county = "Garrett")
+garrett <- read_csv("Garrett_2022.csv") |> clean_names() |>  mutate(county = "Garrett")
 
-washington <- read_csv("Washington_2022.csv") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> mutate(county = "Washington")
+washington <- read_csv("Washington_2022.csv") |> clean_names() |>  mutate(county = "Washington")
 
 all_cvrs <- bind_rows(c(montco, allegany, garrett, washington))
 
 ```
 
 ```{r}
-frederick <- read_excel("11_Frederick/11GG22_PROV_CVR_SBE.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
-frederick1 <- read_excel("11_Frederick/11GG22_Prov_CVR_SBE - 1.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
-frederick2 <- read_excel("11_Frederick/11GG22_Prov_CVR_SBE - 2.xlsx") |> clean_names() |> select(cast_vote_record, precinct, ballot_style, governor_lt_governor_500001343, comptroller_500001345, attorney_general_500001346, u_s_senator_500001386, representative_in_congress_6_500001378) |> drop_na()
+frederick <- read_excel("11_Frederick/11GG22_PROV_CVR_SBE.xlsx") |> clean_names() |>  drop_na()
+frederick1 <- read_excel("11_Frederick/11GG22_Prov_CVR_SBE - 1.xlsx") |> clean_names() |>  drop_na()
+frederick2 <- read_excel("11_Frederick/11GG22_Prov_CVR_SBE - 2.xlsx") |> clean_names() |>  drop_na()
 ```
 
 ```{r}
