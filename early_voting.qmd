@@ -37,8 +37,7 @@ md_early_voting_county_gender %>%
     x = "percent male",
     caption = "source: Maryland State Board of Elections; data covers 1st day"
   ) +
-  theme_minimal() +
-  scale_fill_brewer(palette = "Dark2")
+  theme_minimal()
 ```
 ```{r}
 md_early_voting_county_gender_district <- md_early_voting %>% 
