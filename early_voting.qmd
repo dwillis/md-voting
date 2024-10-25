@@ -4,7 +4,7 @@ library(ggrepel)
 library(RColorBrewer)
 ```
 
-
+### 65 and older by Gender and County
 
 ```{r}
 md_early_voting <- read_csv("https://elections.maryland.gov/press_room/2024_stats/PG24/EarlyVoting%20RAW%20data.csv") %>% filter(AgeGroup == '65 and older')
@@ -39,6 +39,9 @@ md_early_voting_county_gender %>%
   ) +
   theme_minimal()
 ```
+
+### Gender by Congressional District
+
 ```{r}
 md_early_voting_county_gender_district <- md_early_voting %>% 
   group_by(congressional_district_code, GENDER_CODE) %>% 
